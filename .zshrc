@@ -84,6 +84,8 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/.zshrc.arch
+#source $HOME/.zshrc.macos
 
 # User configuration
 
@@ -115,8 +117,13 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias vim="nvim"
+alias dotconf="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval $(thefuck --alias)
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
