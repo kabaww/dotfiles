@@ -13,7 +13,8 @@
 		"group/memorygrp",
 		"group/gpugrp",
 		"group/cpugrp",
-		"clock"
+		"clock",
+		"custom/power"
 	],
 	// LEFT SIDE MODULES
 	"hyprland/workspaces": {
@@ -160,4 +161,11 @@
 			"on-scroll-down": "shift_down"
 		}
 	},
+	"custom/power": {
+		"format": "",
+		"tooltip": false,
+		"on-click": "~/.config/waybar/scripts/power-menu.sh",
+		"exec": "echo ''",
+		"interval": "once"
+	}
 }
