@@ -1,17 +1,139 @@
 {
-    "layer": "top",
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["battery", "clock"],
-    "sway/window": {
-        "max-length": 50
-    },
-    "battery": {
-        "format": "{capacity}% {icon}",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "clock": {
-        "format-alt": "{:%a, %d. %b  %H:%M}"
-    },
-    "reload_tyle_on_change": true
+	"reload_style_on_change": true,
+	"layer": "top",
+	"modules-left": [
+		"hyprland/workspaces",
+	],
+	"modules-center": [],
+	"modules-right": [
+		"group/network",
+		"group/disk",
+		"group/memory",
+		"group/cpu",
+		"clock"
+	],
+	// LEFT SIDE MODULES
+	"hyprland/workspaces": {
+		"format": "{icon}{name}",
+		"sort-by": "id",
+		"persistent-workspaces": {
+			"work": [],
+			"code": [],
+			"edit": [],
+			"chill": [],
+			"comms": []
+		},
+		"all-outputs": true,
+		"format-icons": {
+			"work": "1",
+			"code": "2",
+			"edit": "3",
+			"chill": "4",
+			"comms": "5"
+		},
+		"move-to-monitor": true,
+		"on-scroll-up": "hyprctl dispatch workspace e+1",
+		"on-scroll-down": "hyprctl dispatch workspace e-1"
+	},
+	// RIGHT SIDE MODULES
+	"group/network": {
+		"orientation": "vertical",
+		"modules": [
+			"network#up",
+			"network#down"
+		]
+	},
+	"group/cpu": {
+		"orientation": "vertical",
+		"modules": [
+			"custom/cpu-label",
+			"cpu"
+		]
+	},
+	"group/memory": {
+		"orientation": "vertical",
+		"modules": [
+			"custom/memory-label",
+			"memory"
+		]
+	},
+	"group/disk": {
+		"orientation": "vertical",
+		"modules": [
+			"custom/disk-label",
+			"disk"
+		]
+	},
+	"network#up": {
+		"interval": 5,
+		"interface": "enp6s0",
+		"format": " {bandwidthUpBytes}"
+	},
+	"network#down": {
+		"interval": 5,
+		"interface": "enp6s0",
+		"format": " {bandwidthDownBytes}"
+	},
+	"custom/disk-label": {
+		"format": "/dev/nvme"
+	},
+	"disk": {
+		"interval": 120,
+		"format": "{specific_free:0.2f}GB",
+		"unit": "GB",
+		"path": "/"
+	},
+	"custom/memory-label": {
+		"format": "FREE"
+	},
+	"memory": {
+		"interval": 30,
+		"format": "{avail}GB"
+	},
+	"custom/cpu-label": {
+		"format": "CPU",
+		"class": "module-label"
+	},
+	"cpu": {
+		"interval": 1,
+		"format": "{icon0}{icon1}{icon2}{icon3} {usage}%",
+		"format-icons": [
+			" ",
+			"▂",
+			"▃",
+			"▄",
+			"▅",
+			"▆",
+			"▇",
+			"█"
+		], // Icons for different usage levels
+		"tooltip": true, // Show detailed info on hover
+		"states": {
+			"critical": 80, // Usage percentage for critical state
+			"high": 60 // Usage percentage for high state
+		}
+	},
+	"clock": {
+		"interval": 60,
+		"format": "{:%a %b %d  %I:%M %p}",
+		"tooltip-format": "<tt><small>{calendar}</small></tt>",
+		"calendar": {
+			"mode": "year",
+			"mode-mon-col": 3,
+			"weeks-pos": "right",
+			"on-scroll": 1,
+			"format": {
+				"months": "<span color='#ffead3'><b>{}</b></span>",
+				"days": "<span color='#ecc6d9'><b>{}</b></span>",
+				"weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+				"weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+				"today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+			}
+		},
+		"actions": {
+			"on-click-right": "mode",
+			"on-scroll-up": "shift_up",
+			"on-scroll-down": "shift_down"
+		}
+	},
 }
