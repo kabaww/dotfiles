@@ -4,9 +4,11 @@
 	"position": "top",
 	"height": 30,
 	"modules-left": [
-		"hyprland/workspaces",
+		"hyprland/workspaces"
 	],
-	"modules-center": [],
+	"modules-center": [
+		"hyprland/window"
+	],
 	"modules-right": [
 		"group/networkgrp",
 		"group/diskgrp",
@@ -38,6 +40,10 @@
 		"move-to-monitor": true,
 		"on-scroll-up": "hyprctl dispatch workspace e+1",
 		"on-scroll-down": "hyprctl dispatch workspace e-1"
+	},
+	// CENTER MODULES
+	"hyprland/window": {
+		"format": "./{}"
 	},
 	// RIGHT SIDE MODULES
 	"group/networkgrp": {

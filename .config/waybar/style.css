@@ -20,9 +20,11 @@ window#waybar {
 	/* background-color: red; */
 }
 
+.modules-left *,
 .modules-right * {
 	margin: 0 5px 0 5px;
 }
+
 
 #custom-gpu-label,
 #custom-disk-label,
@@ -83,4 +85,31 @@ window#waybar {
 #custom-power {
 	font-size: 20px;
 	padding-right: 10px;
+}
+
+#custom-archlogo {
+	font-size: 24px;
+	padding-left: 15px;
+}
+
+#window * {
+	font-size: 14px;
+	font-family: SF Mono, monospace;
+	font-weight: bold;
+}
+
+#workspaces button {
+	margin: 0.4em 0.2em;
+}
+
+#workspaces icon {
+	color: @accent-color;
+}
+
+#workspaces button.active {
+	background-color: @item-bg-color
+}
+
+#workspaces button.visible {
+	background-color: @item-bg-color
 }
