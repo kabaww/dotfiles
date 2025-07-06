@@ -112,8 +112,8 @@ window#waybar {
 	background-color: @workspace-bg-notempty
 }
 
-#workspaces button.empty{
-	background-color: rgba(0,0,0,0)
+#workspaces button.empty {
+	background-color: rgba(0, 0, 0, 0)
 }
 
 
