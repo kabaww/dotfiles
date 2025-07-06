@@ -1,0 +1,81 @@
+@define-color bar-color rgba(0, 31, 48, 0.5);
+@define-color item-bg-color rgba(0, 53, 71, 0.5);
+@define-color accent-color rgba(44, 249, 237, 1);
+
+* {
+	font-family: SF Pro Display, sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+	color: white;
+	margin: 0;
+	padding: 0;
+	min-height: 0;
+}
+
+window#waybar {
+	background-color: @bar-color;
+}
+
+.module {
+	/* background-color: red; */
+}
+
+.modules-right * {
+	margin: 0 5px 0 5px;
+}
+
+#custom-gpu-label,
+#custom-disk-label,
+#custom-memory-label,
+#custom-cpu-label {
+	font-size: 8px;
+	font-weight: normal;
+	margin-bottom: -2px;
+}
+
+#custom-gpu,
+#disk,
+#memory,
+#cpu {
+	font-weight: bold;
+	letter-spacing: -1px;
+}
+
+#gpugrp,
+#networkgrp,
+#diskgrp,
+#memorygrp,
+#cpugrp {
+	min-width: 40px;
+	padding-top: 4px;
+	/* background-color: purple; */
+}
+
+#networkgrp {
+	min-width: 70px;
+}
+
+#network.up {
+	margin-bottom: -2px;
+}
+
+#network.down {
+	margin-top: -2px;
+}
+
+#network {
+	min-width: 40px;
+	font-size: 10px;
+}
+
+#network.down span {
+	font-size: 12px;
+}
+
+#clock {
+	padding-left: 10px;
+	padding-right: 20px;
+	font-family: SF Mono, monospace;
+	font-weight: bold;
+	font-size: 14px;
+}

@@ -1,15 +1,18 @@
 {
 	"reload_style_on_change": true,
 	"layer": "top",
+	"position": "top",
+	"height": 30,
 	"modules-left": [
 		"hyprland/workspaces",
 	],
 	"modules-center": [],
 	"modules-right": [
-		"group/network",
-		"group/disk",
-		"group/memory",
-		"group/cpu",
+		"group/networkgrp",
+		"group/diskgrp",
+		"group/memorygrp",
+		"group/gpugrp",
+		"group/cpugrp",
 		"clock"
 	],
 	// LEFT SIDE MODULES
@@ -36,82 +39,103 @@
 		"on-scroll-down": "hyprctl dispatch workspace e-1"
 	},
 	// RIGHT SIDE MODULES
-	"group/network": {
+	"group/networkgrp": {
 		"orientation": "vertical",
 		"modules": [
 			"network#up",
 			"network#down"
 		]
 	},
-	"group/cpu": {
+	"group/cpugrp": {
 		"orientation": "vertical",
 		"modules": [
 			"custom/cpu-label",
-			"cpu"
+			"custom/cpu"
 		]
 	},
-	"group/memory": {
+	"group/memorygrp": {
 		"orientation": "vertical",
 		"modules": [
 			"custom/memory-label",
 			"memory"
 		]
 	},
-	"group/disk": {
+	"group/diskgrp": {
 		"orientation": "vertical",
 		"modules": [
 			"custom/disk-label",
 			"disk"
 		]
 	},
+	"group/gpugrp": {
+		"orientation": "vertical",
+		"modules": [
+			"custom/gpu-label",
+			"custom/gpu"
+		]
+	},
 	"network#up": {
 		"interval": 5,
 		"interface": "enp6s0",
-		"format": " {bandwidthUpBytes}"
+		"format": " {bandwidthUpBytes}",
+		"align": 1
 	},
 	"network#down": {
 		"interval": 5,
 		"interface": "enp6s0",
-		"format": " {bandwidthDownBytes}"
+		"format": " {bandwidthDownBytes}",
+		"align": 1
 	},
 	"custom/disk-label": {
-		"format": "/dev/nvme"
+		"format": "/dev/nvme",
+		"justify": "right",
+		"align": 1
 	},
 	"disk": {
 		"interval": 120,
 		"format": "{specific_free:0.2f}GB",
 		"unit": "GB",
-		"path": "/"
+		"path": "/",
+		"align": 1
 	},
 	"custom/memory-label": {
-		"format": "FREE"
+		"format": "FREE",
+		"align": 1
 	},
 	"memory": {
 		"interval": 30,
-		"format": "{avail}GB"
+		"format": "{avail}GB",
+		"align": 1
 	},
-	"custom/cpu-label": {
-		"format": "CPU",
-		"class": "module-label"
+	"custom/gpu-label": {
+		"format": "GPU",
+		"class": "label",
+		"align": 1
 	},
-	"cpu": {
-		"interval": 1,
-		"format": "{icon0}{icon1}{icon2}{icon3} {usage}%",
-		"format-icons": [
-			" ",
-			"▂",
-			"▃",
-			"▄",
-			"▅",
-			"▆",
-			"▇",
-			"█"
-		], // Icons for different usage levels
-		"tooltip": true, // Show detailed info on hover
+	"custom/gpu": {
+		"interval": 5,
+		"exec": "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits",
+		"format": "{}°C",
 		"states": {
 			"critical": 80, // Usage percentage for critical state
 			"high": 60 // Usage percentage for high state
-		}
+		},
+		"align": 1
+	},
+	"custom/cpu-label": {
+		"format": "CPU",
+		"class": "label",
+		"align": 1
+	},
+	"custom/cpu": {
+		"interval": 5,
+		"exec": "sensors | grep 'Tctl' | awk '{print int($2 + 0.5)}'",
+		"format": "{}°C",
+		"states": {
+			"critical": 80, // Usage percentage for critical state
+			"high": 60 // Usage percentage for high state
+		},
+		"align": 1
 	},
 	"clock": {
 		"interval": 60,
