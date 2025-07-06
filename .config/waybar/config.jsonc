@@ -4,6 +4,7 @@
 	"position": "top",
 	"height": 30,
 	"modules-left": [
+		"custom/archlogo",
 		"hyprland/workspaces"
 	],
 	"modules-center": [
@@ -19,8 +20,11 @@
 		"custom/power"
 	],
 	// LEFT SIDE MODULES
+	"custom/archlogo": {
+		"format": "󰣇",
+	},
 	"hyprland/workspaces": {
-		"format": "{icon}{name}",
+		"format": "{icon} {name}",
 		"sort-by": "id",
 		"persistent-workspaces": {
 			"work": [],
@@ -31,11 +35,11 @@
 		},
 		"all-outputs": true,
 		"format-icons": {
-			"work": "1",
-			"code": "2",
-			"edit": "3",
-			"chill": "4",
-			"comms": "5"
+			"work": "<span color='#00dafc'>1</span>",
+			"code": "<span color='#00dafc'>2</span>",
+			"edit": "<span color='#00dafc'>3</span>",
+			"chill": "<span color='#00dafc'>4</span>",
+			"comms": "<span color='#00dafc'>5</span>"
 		},
 		"move-to-monitor": true,
 		"on-scroll-up": "hyprctl dispatch workspace e+1",

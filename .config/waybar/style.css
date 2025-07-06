@@ -1,6 +1,7 @@
 @define-color bar-color rgba(0, 31, 48, 0.5);
-@define-color item-bg-color rgba(0, 53, 71, 0.5);
-@define-color accent-color rgba(44, 249, 237, 1);
+@define-color workspace-bg-visible #005470;
+@define-color workspace-bg-notempty #003547;
+@define-color workspace-bg-active #2A675A;
 
 * {
 	font-family: SF Pro Display, sans-serif;
@@ -98,18 +99,29 @@ window#waybar {
 	font-weight: bold;
 }
 
-#workspaces button {
-	margin: 0.4em 0.2em;
-}
 
-#workspaces icon {
-	color: @accent-color;
-}
 
-#workspaces button.active {
-	background-color: @item-bg-color
-}
+
+
 
 #workspaces button.visible {
-	background-color: @item-bg-color
+	background-color: @workspace-bg-visible
+}
+
+#workspaces button.hosting-monitor {
+	background-color: @workspace-bg-notempty
+}
+
+#workspaces button.empty{
+	background-color: rgba(0,0,0,0)
+}
+
+
+#workspaces button.active {
+	background-color: @workspace-bg-active
+}
+
+#workspaces button {
+	margin: 0.4em 0.2em;
+	/* background-color: rgba(0,0,0,0); */
 }
