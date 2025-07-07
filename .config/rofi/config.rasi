@@ -6,7 +6,14 @@ configuration {
 	combi-hide-on-prefix: true;
 
 	display-drun: "";
-   timeout {
+  calc {
+	calc-command: "echo -n '{result}' | wl-copy";
+	terse: true;
+	hint-result: "RESULT: ";
+	hint-welcome: "calc: ";
+	no-bold: true;
+  }
+  timeout {
       action: "kb-cancel";
       delay:  0;
   }

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Rofi Calculator
+Comment=Perform calculations with Rofi
+Exec=rofi -show calc
+Icon=calc
+Terminal=false
+Type=Application
+Categories=Utility;Calculator;
+Keywords=calc;calculator;math;units;currency;
