@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Power menu options
-options="Logout\nReboot\nShutdown"
+options="Lock Screen\nLogout\nReboot\nShutdown"
 
 # Use rofi to display the menu
 # -dmenu: Enable dmenu mode (text input)
@@ -12,6 +12,9 @@ options="Logout\nReboot\nShutdown"
 chosen=$(echo -e "$options" | rofi -dmenu -p "Power actions" -matching fuzzy -lines 3)
 
 case "$chosen" in
+    "Lock Screen")
+	hyprlock || hyprctl dispatch exit
+	;;
     Logout)
         hyprctl dispatch exit
         ;;
