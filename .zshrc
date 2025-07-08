@@ -85,6 +85,7 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.zshrc.arch
+source $HOME/.zshrc.local
 #source $HOME/.zshrc.macos
 
 # User configuration

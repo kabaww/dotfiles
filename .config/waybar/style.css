@@ -26,6 +26,21 @@ window#waybar {
 	margin: 0 5px 0 5px;
 }
 
+#custom-media-next,
+#custom-media-prev {
+	font-size: 18px;
+}
+
+#custom-media-title {
+	/* font-size: 8px; */
+	margin-bottom: -2px;
+	padding: 0 10px;
+}
+
+#custom-media-artist {
+	font-size: 8px;
+}
+
 
 #custom-gpu-label,
 #custom-disk-label,
@@ -44,6 +59,7 @@ window#waybar {
 	letter-spacing: -1px;
 }
 
+#media-name,
 #gpugrp,
 #networkgrp,
 #diskgrp,

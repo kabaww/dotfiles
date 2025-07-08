@@ -5,10 +5,13 @@
 	"height": 30,
 	"modules-left": [
 		"custom/archlogo",
-		"hyprland/workspaces"
+		"hyprland/workspaces",
+		"hyprland/window"
 	],
 	"modules-center": [
-		"hyprland/window"
+		"custom/media-prev",
+		"group/media-name",
+		"custom/media-next"
 	],
 	"modules-right": [
 		"group/networkgrp",
@@ -16,12 +19,13 @@
 		"group/memorygrp",
 		"group/gpugrp",
 		"group/cpugrp",
+		"pulseaudio",
 		"clock",
 		"custom/power"
 	],
 	// LEFT SIDE MODULES
 	"custom/archlogo": {
-		"format": "󰣇",
+		"format": "󰣇"
 	},
 	"hyprland/workspaces": {
 		"format": "{icon} {name}",
@@ -45,11 +49,60 @@
 		"on-scroll-up": "hyprctl dispatch workspace e+1",
 		"on-scroll-down": "hyprctl dispatch workspace e-1"
 	},
-	// CENTER MODULES
 	"hyprland/window": {
 		"format": "./{}"
 	},
+	// CENTER MODULES
+	"custom/media-prev": {
+		"format": "󰒮",
+		"on-click": "playerctl previous"
+	},
+	"custom/media-next": {
+		"format": "󰒭",
+		"on-click": "playerctl next"
+	},
+	"group/media-name": {
+		"orientation": "vertical",
+		"modules": [
+			"custom/media-title",
+			"custom/media-artist"
+		]
+	},
+	"custom/media-title": {
+		"format": "{}",
+		"tooltip": false,
+		"exec": "~/.config/waybar/scripts/media-controls.sh title",
+		"return-type": "json",
+		"interval": 1,
+		"on-click": "playerctl play-pause",
+		"exec-if": "playerctl status 2>/dev/null"
+	},
+	"custom/media-artist": {
+		"format": "{}",
+		"tooltip": false,
+		"exec": "~/.config/waybar/scripts/media-controls.sh artist",
+		"return-type": "json",
+		"interval": 1
+	},
 	// RIGHT SIDE MODULES
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+		"format-muted": "󰝛 {volume}%",
+		"format-source-muted": "󰖁",
+		"scroll-step": 1,
+		"on-click": "pavucontrol", // You don't like pavucontrol, so change this!
+		"on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+		"on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+		"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+		// "on-click-middle": "~/.local/bin/audio_output_menu.sh", // Link to your Rofi/Wofi script
+		"format-icons": {
+			"bluez_output.3C_39_E7_BD_36_CC.1": "󰂯",
+			"headphone": "󰋋",
+			"bluetooth": "󰂯", // A nice Bluetooth icon, requires Nerd Fonts
+			"speaker": "󰕾",
+			"default": "󰕾"
+		}
+	},
 	"group/networkgrp": {
 		"orientation": "vertical",
 		"modules": [
