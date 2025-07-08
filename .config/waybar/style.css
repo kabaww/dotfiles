@@ -28,7 +28,7 @@ window#waybar {
 
 #custom-media-next,
 #custom-media-prev {
-	font-size: 18px;
+	font-size: 14px;
 }
 
 #custom-media-title {
@@ -39,6 +39,10 @@ window#waybar {
 
 #custom-media-artist {
 	font-size: 8px;
+}
+
+#media-name {
+	padding-top: 3px;
 }
 
 
@@ -59,7 +63,7 @@ window#waybar {
 	letter-spacing: -1px;
 }
 
-#media-name,
+
 #gpugrp,
 #networkgrp,
 #diskgrp,
