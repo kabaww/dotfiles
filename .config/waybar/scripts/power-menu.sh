@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Power menu options
-options="Lock Screen\nLogout\nReboot\nShutdown"
+options="Lock Screen\nLogout\nHibernate\nReboot\nShutdown"
 
 # Use rofi to display the menu
 # -dmenu: Enable dmenu mode (text input)
@@ -18,6 +18,9 @@ case "$chosen" in
     Logout)
         hyprctl dispatch exit
         ;;
+    Hibernate)
+        hyprlock && sleep 2 && systemctl hibernate
+    ;;
     Reboot)
         systemctl reboot
         ;;
