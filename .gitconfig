@@ -1,3 +1,14 @@
 [user]
 	email = josh@krokismedia.com
 	name = kabaww
+	signingkey = /home/kabaww/.ssh/id_ed25519.pub
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[gpg "ssh"]
+	allowedSignersFile = ~/.config/git/allowed-signers
+[merge]
+	tool = meld
+[pull]
+	rebase = true
