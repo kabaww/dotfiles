@@ -29,7 +29,7 @@ sketchybar --default updates=when_shown                       \
 
 # left items
 source $ITEM_DIR/apple.sh
-source $ITEM_DIR/spaces.sh
+source $ITEM_DIR/aerospace.sh
 source $ITEM_DIR/window_title.sh
 
 # right items
@@ -39,7 +39,7 @@ source $ITEM_DIR/battery.sh
 source $ITEM_DIR/cpu.sh
 source $ITEM_DIR/ram.sh
 source $ITEM_DIR/disk.sh
-source $ITEM_DIR/network.sh
+# source $ITEM_DIR/network.sh
 
 sketchybar --update
 
