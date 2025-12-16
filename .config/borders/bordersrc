@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Configure options in an array for readability
+options=(
+    style=round          # Options: round, square, uniform
+    width=3.0            # Border thickness
+    radius=8.0          # Corner radius (higher = more rounded)
+    active_color=0xFF24EAF7   # Focused window color (White)
+    inactive_color=0x44011423 # Unfocused window color (Semi-transparent)
+    hidpi=on             # Sharp borders on Retina displays
+    # order=above          # Draws border over the window shadow
+)
+
+# Apply the options
+borders "${options[@]}"

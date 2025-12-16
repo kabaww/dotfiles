@@ -1,0 +1,53 @@
+# Ghostty configuration converted from kitty.conf
+# Note=Some kitty-specific features are not supported in ghostty and have been omitted
+
+# Font settings
+font-family=JetBrainsMono Nerd Font Mono
+font-size=12.0
+
+window-decoration=none
+macos-titlebar-style=hidden
+
+window-step-resize=true
+window-padding-color=extend
+window-padding-x=8
+window-padding-y=8
+
+# Color scheme
+foreground = #CBE0F0
+background = #011423
+background-opacity = 0.9
+background-blur-radius=20
+
+# Cursor settings
+cursor-style = block
+cursor-color = #47FF9C
+cursor-text = #011423
+
+# Color palette (16 colors)
+palette = 0=#214969
+palette = 1=#E52E2E 
+palette = 2=#44FFB1
+palette = 3=#FFE073
+palette = 4=#0FC5ED
+palette = 5=#a277ff
+palette = 6=#24EAF7
+palette = 7=#24EAF7
+palette = 8=#214969
+palette = 9=#E52E2E
+palette = 10=#44FFB1
+palette = 11=#FFE073
+palette = 12=#A277FF
+palette = 13=#a277ff
+palette = 14=#24EAF7
+palette = 15=#24EAF7
+
+
+# Note=The following kitty-specific settings are not supported in ghostty:
+# - symbol_map (font fallbacks for CJK and emoji)
+# - background_blur
+# - dynamic_background_opacity
+# - url_color / url_style
+# - visual_bell_duration
+# - cursor_text_color (ghostty uses background color for text under cursor)
+# - bold_font, italic_font, bold_italic_font (ghostty handles these automatically)
