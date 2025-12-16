@@ -35,7 +35,7 @@ source $ITEM_DIR/window_title.sh
 # right items
 source $ITEM_DIR/clock.sh
 source $ITEM_DIR/battery.sh
-source $ITEM_DIR/wifi.sh
+# source $ITEM_DIR/wifi.sh
 source $ITEM_DIR/cpu.sh
 source $ITEM_DIR/ram.sh
 source $ITEM_DIR/disk.sh
