@@ -1,9 +1,10 @@
 [user]
 	email = josh@krokismedia.com
 	name = kabaww
-	signingkey = 5157FD1B8C82B956
+	signingkey = /home/kabaww/.ssh/id_ed25519.pub
 [gpg]
 	program = gpg
+	format = ssh
 [commit]
 	gpgsign = true
 [gpg "ssh"]
@@ -12,3 +13,6 @@
 	tool = meld
 [pull]
 	rebase = true
+[fetch]
+	prune = true
+	pruneTags = true

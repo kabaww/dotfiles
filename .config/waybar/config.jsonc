@@ -1,234 +1,210 @@
 {
-	"reload_style_on_change": true,
-	"layer": "top",
-	"position": "top",
-	"height": 30,
-	"modules-left": [
-		"custom/archlogo",
-		"hyprland/workspaces",
-		"hyprland/window"
-	],
-	"modules-center": [
-		"custom/media-prev",
-		"group/media-name",
-		"custom/media-next"
-	],
-	"modules-right": [
-		"group/networkgrp",
-		"group/diskgrp",
-		"group/memorygrp",
-		"group/gpugrp",
-		"group/cpugrp",
-		"pulseaudio",
-		"clock",
-		"custom/power"
-	],
-	// LEFT SIDE MODULES
-	"custom/archlogo": {
-		"format": "󰣇"
-	},
-	"hyprland/workspaces": {
-		"format": "{icon} {name}",
-		"sort-by": "id",
-		"persistent-workspaces": {
-			"work": [],
-			"code": [],
-			"edit": [],
-			"chill": [],
-			"comms": []
-		},
-		"all-outputs": true,
-		"format-icons": {
-			"work": "<span color='#00dafc'>1</span>",
-			"code": "<span color='#00dafc'>2</span>",
-			"edit": "<span color='#00dafc'>3</span>",
-			"chill": "<span color='#00dafc'>4</span>",
-			"comms": "<span color='#00dafc'>5</span>"
-		},
-		"move-to-monitor": true,
-		"on-scroll-up": "hyprctl dispatch workspace e+1",
-		"on-scroll-down": "hyprctl dispatch workspace e-1"
-	},
-	"hyprland/window": {
-		"format": "./{}"
-	},
-	// CENTER MODULES
-	"custom/media-prev": {
-		"format": "󰒮",
-		"on-click": "playerctl previous"
-	},
-	"custom/media-next": {
-		"format": "󰒭",
-		"on-click": "playerctl next"
-	},
-	"group/media-name": {
-		"orientation": "vertical",
-		"modules": [
-			"custom/media-title",
-			"custom/media-artist"
-		]
-	},
-	"custom/media-title": {
-		"format": "{}",
-		"tooltip": false,
-		"exec": "~/.config/waybar/scripts/media-controls.sh title",
-		"return-type": "json",
-		"interval": 1,
-		"on-click": "playerctl play-pause",
-		"exec-if": "playerctl status 2>/dev/null"
-	},
-	"custom/media-artist": {
-		"format": "{}",
-		"tooltip": false,
-		"exec": "~/.config/waybar/scripts/media-controls.sh artist",
-		"return-type": "json",
-		"interval": 1
-	},
-	// RIGHT SIDE MODULES
-	"pulseaudio": {
-		"format": "{icon} {volume}%",
-		"format-muted": "󰝛 {volume}%",
-		"format-source-muted": "󰖁",
-		"scroll-step": 1,
-		"on-click": "pavucontrol", // You don't like pavucontrol, so change this!
-		"on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-		"on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
-		"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
-		// "on-click-middle": "~/.local/bin/audio_output_menu.sh", // Link to your Rofi/Wofi script
-		"format-icons": {
-			"bluez_output.3C_39_E7_BD_36_CC.1": "󰂯",
-			"headphone": "󰋋",
-			"bluetooth": "󰂯", // A nice Bluetooth icon, requires Nerd Fonts
-			"speaker": "󰕾",
-			"default": "󰕾"
-		}
-	},
-	"group/networkgrp": {
-		"orientation": "vertical",
-		"modules": [
-			"network#up",
-			"network#down"
-		]
-	},
-	"group/cpugrp": {
-		"orientation": "vertical",
-		"modules": [
-			"custom/cpu-label",
-			"custom/cpu"
-		]
-	},
-	"group/memorygrp": {
-		"orientation": "vertical",
-		"modules": [
-			"custom/memory-label",
-			"memory"
-		]
-	},
-	"group/diskgrp": {
-		"orientation": "vertical",
-		"modules": [
-			"custom/disk-label",
-			"disk"
-		]
-	},
-	"group/gpugrp": {
-		"orientation": "vertical",
-		"modules": [
-			"custom/gpu-label",
-			"custom/gpu"
-		]
-	},
-	"network#up": {
-		"interval": 5,
-		"interface": "enp6s0",
-		"format": " {bandwidthUpBytes}",
-		"align": 1
-	},
-	"network#down": {
-		"interval": 5,
-		"interface": "enp6s0",
-		"format": " {bandwidthDownBytes}",
-		"align": 1
-	},
-	"custom/disk-label": {
-		"format": "/dev/nvme",
-		"justify": "right",
-		"align": 1
-	},
-	"disk": {
-		"interval": 120,
-		"format": "{specific_free:0.2f}GB",
-		"unit": "GB",
-		"path": "/",
-		"align": 1
-	},
-	"custom/memory-label": {
-		"format": "FREE",
-		"align": 1
-	},
-	"memory": {
-		"interval": 30,
-		"format": "{avail}GB",
-		"align": 1
-	},
-	"custom/gpu-label": {
-		"format": "GPU",
-		"class": "label",
-		"align": 1
-	},
-	"custom/gpu": {
-		"interval": 5,
-		"exec": "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits",
-		"format": "{}°C",
-		"states": {
-			"critical": 80, // Usage percentage for critical state
-			"high": 60 // Usage percentage for high state
-		},
-		"align": 1
-	},
-	"custom/cpu-label": {
-		"format": "CPU",
-		"class": "label",
-		"align": 1
-	},
-	"custom/cpu": {
-		"interval": 5,
-		"exec": "sensors | grep 'Tctl' | awk '{print int($2 + 0.5)}'",
-		"format": "{}°C",
-		"states": {
-			"critical": 80, // Usage percentage for critical state
-			"high": 60 // Usage percentage for high state
-		},
-		"align": 1
-	},
-	"clock": {
-		"interval": 60,
-		"format": "{:%a %b %d  %I:%M %p}",
-		"tooltip-format": "<tt><small>{calendar}</small></tt>",
-		"calendar": {
-			"mode": "year",
-			"mode-mon-col": 3,
-			"weeks-pos": "right",
-			"on-scroll": 1,
-			"format": {
-				"months": "<span color='#ffead3'><b>{}</b></span>",
-				"days": "<span color='#ecc6d9'><b>{}</b></span>",
-				"weeks": "<span color='#99ffdd'><b>W{}</b></span>",
-				"weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-				"today": "<span color='#ff6699'><b><u>{}</u></b></span>"
-			}
-		},
-		"actions": {
-			"on-click-right": "mode",
-			"on-scroll-up": "shift_up",
-			"on-scroll-down": "shift_down"
-		}
-	},
-	"custom/power": {
-		"format": "",
-		"tooltip": false,
-		"on-click": "~/.config/waybar/scripts/power-menu.sh",
-		"exec": "echo ''",
-		"interval": "once"
-	}
+  "reload_style_on_change": true,
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+  "modules-left": ["custom/archlogo", "hyprland/workspaces", "hyprland/window"],
+  "modules-center": [
+    "custom/media-prev",
+    "group/media-name",
+    "custom/media-next",
+  ],
+  "modules-right": [
+    "group/networkgrp",
+    "group/diskgrp",
+    "group/memorygrp",
+    "group/gpugrp",
+    "group/cpugrp",
+    "pulseaudio",
+    "clock",
+    "custom/power",
+  ],
+  // LEFT SIDE MODULES
+  "custom/archlogo": {
+    "format": "󰣇",
+  },
+  "hyprland/workspaces": {
+    "format": "{icon} {name}",
+    // "sort-by": "number",
+    // "persistent-workspaces": {
+    //   "*": 5,
+    // },
+    "all-outputs": true,
+    // "ignore-workspaces": ["comms"],
+    "format-icons": {
+      "work": "<span color='#00dafc'>1</span>",
+      "code": "<span color='#00dafc'>2</span>",
+      "edit": "<span color='#00dafc'>3</span>",
+      "chill": "<span color='#00dafc'>4</span>",
+      "comms": "<span color='#00dafc'>5</span>",
+      "default": "",
+    },
+    "move-to-monitor": true,
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+  },
+  "hyprland/window": {
+    "format": "./{}",
+  },
+  // CENTER MODULES
+  "custom/media-prev": {
+    "format": "󰒮",
+    "on-click": "playerctl previous",
+  },
+  "custom/media-next": {
+    "format": "󰒭",
+    "on-click": "playerctl next",
+  },
+  "group/media-name": {
+    "orientation": "vertical",
+    "modules": ["custom/media-title", "custom/media-artist"],
+  },
+  "custom/media-title": {
+    "format": "{}",
+    "tooltip": false,
+    "exec": "~/.config/waybar/scripts/media-controls.sh title",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "playerctl play-pause",
+    "exec-if": "playerctl status 2>/dev/null",
+  },
+  "custom/media-artist": {
+    "format": "{}",
+    "tooltip": false,
+    "exec": "~/.config/waybar/scripts/media-controls.sh artist",
+    "return-type": "json",
+    "interval": 1,
+  },
+  // RIGHT SIDE MODULES
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝛 {volume}%",
+    "format-source-muted": "󰖁",
+    "scroll-step": 1,
+    "on-click": "pavucontrol", // You don't like pavucontrol, so change this!
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+    // "on-click-middle": "~/.local/bin/audio_output_menu.sh", // Link to your Rofi/Wofi script
+    "format-icons": {
+      "bluez_output.3C_39_E7_BD_36_CC.1": "󰂯",
+      "headphone": "󰋋",
+      "bluetooth": "󰂯", // A nice Bluetooth icon, requires Nerd Fonts
+      "speaker": "󰕾",
+      "default": "󰕾",
+    },
+  },
+  "group/networkgrp": {
+    "orientation": "vertical",
+    "modules": ["network#up", "network#down"],
+  },
+  "group/cpugrp": {
+    "orientation": "vertical",
+    "modules": ["custom/cpu-label", "custom/cpu"],
+  },
+  "group/memorygrp": {
+    "orientation": "vertical",
+    "modules": ["custom/memory-label", "memory"],
+  },
+  "group/diskgrp": {
+    "orientation": "vertical",
+    "modules": ["custom/disk-label", "disk"],
+  },
+  "group/gpugrp": {
+    "orientation": "vertical",
+    "modules": ["custom/gpu-label", "custom/gpu"],
+  },
+  "network#up": {
+    "interval": 5,
+    "interface": "enp6s0",
+    "format": " {bandwidthUpBytes}",
+    "align": 1,
+  },
+  "network#down": {
+    "interval": 5,
+    "interface": "enp6s0",
+    "format": " {bandwidthDownBytes}",
+    "align": 1,
+  },
+  "custom/disk-label": {
+    "format": "/dev/nvme",
+    "justify": "right",
+    "align": 1,
+  },
+  "disk": {
+    "interval": 120,
+    "format": "{specific_free:0.2f}GB",
+    "unit": "GB",
+    "path": "/",
+    "align": 1,
+  },
+  "custom/memory-label": {
+    "format": "FREE",
+    "align": 1,
+  },
+  "memory": {
+    "interval": 30,
+    "format": "{avail}GB",
+    "align": 1,
+  },
+  "custom/gpu-label": {
+    "format": "GPU",
+    "class": "label",
+    "align": 1,
+  },
+  "custom/gpu": {
+    "interval": 5,
+    "exec": "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits",
+    "format": "{}°C",
+    "states": {
+      "critical": 80, // Usage percentage for critical state
+      "high": 60, // Usage percentage for high state
+    },
+    "align": 1,
+  },
+  "custom/cpu-label": {
+    "format": "CPU",
+    "class": "label",
+    "align": 1,
+  },
+  "custom/cpu": {
+    "interval": 5,
+    "exec": "sensors | grep 'Tctl' | awk '{print int($2 + 0.5)}'",
+    "format": "{}°C",
+    "states": {
+      "critical": 80, // Usage percentage for critical state
+      "high": 60, // Usage percentage for high state
+    },
+    "align": 1,
+  },
+  "clock": {
+    "interval": 60,
+    "format": "{:%a %b %d  %I:%M %p}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
+      },
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down",
+    },
+  },
+  "custom/power": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/scripts/power-menu.sh",
+    "exec": "echo ''",
+    "interval": "once",
+  },
 }

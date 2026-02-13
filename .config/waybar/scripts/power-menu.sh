@@ -19,7 +19,7 @@ case "$chosen" in
         hyprctl dispatch exit
         ;;
     Hibernate)
-        hyprlock && sleep 2 && systemctl hibernate
+        hyprctl dispatch dpms off && hyprlock && sleep 2 && systemctl hibernate
     ;;
     Reboot)
         systemctl reboot

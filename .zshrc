@@ -125,6 +125,7 @@ fi
 
 alias vim="nvim"
 alias dotconf="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias lzdot='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -138,10 +139,51 @@ export NVM_DIR="$HOME/.nvm"
 eval "$(zoxide init --cmd cd zsh)"
 
 # bun completions
-[ -s "/Users/photoshoplol/.bun/_bun" ] && source "/Users/photoshoplol/.bun/_bun"
+[ -s "/home/kabaww/.bun/_bun" ] && source "/home/kabaww/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# opencode
+export PATH=/home/kabaww/.opencode/bin:$PATH
+
+# kitty ssh fix
+[[ "$TERM" == "xterm-kitty" ]] && alias ssh="TERM=xterm-256color ssh"
+
+# vi-mode
+source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+export YDOTOOL_SOCKET="$HOME/.ydotool_socket"
+
+# pnpm
+export PNPM_HOME="/home/kabaww/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
 export PATH="$HOME/.local/bin:$PATH"
 
+# export SWIFTENV_ROOT="$HOME/.swiftenv"
+# export PATH="$SWIFTENV_ROOT/bin:$PATH"
+# eval "$(swiftenv init -)"
+
+
+export SWIFTLY_BIN_DIR="/home/kabaww/.local/share/swiftly/bin"
+export SWIFTLY_TOOLCHAINS_DIR="/home/kabaww/.local/share/swiftly/toolchains"
+if [[ ":$PATH:" != *":$SWIFTLY_BIN_DIR:"* ]]; then
+    export PATH="$SWIFTLY_BIN_DIR:$PATH"
+fi
+
+export XDG_DATA_DIRS="/usr/local/share:${XDG_DATA_DIRS}"
+
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/platform_tools
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+
+export JAVA_HOME=/opt/android-studio/jbr
+export PATH=$PATH:$JAVA_HOME/bin
+
+export CAPACITOR_ANDROID_STUDIO_PATH=/usr/bin/android-studio
