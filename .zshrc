@@ -84,9 +84,15 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/.zshrc.arch
-source $HOME/.zshrc.local
-#source $HOME/.zshrc.macos
+
+# Platform-specific config
+case "$(uname -s)" in
+  Linux)  [[ -f $HOME/.zshrc.arch ]] && source $HOME/.zshrc.arch ;;
+  Darwin) [[ -f $HOME/.zshrc.macos ]] && source $HOME/.zshrc.macos ;;
+esac
+
+# Machine-local config (secrets, etc.)
+[[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
 # User configuration
 
@@ -130,34 +136,33 @@ alias lazyconf='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-eval $(thefuck --alias)
+command -v thefuck &>/dev/null && eval $(thefuck --alias)
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-eval "$(zoxide init --cmd cd zsh)"
+command -v zoxide &>/dev/null && eval "$(zoxide init --cmd cd zsh)"
 
 # bun completions
-[ -s "/home/kabaww/.bun/_bun" ] && source "/home/kabaww/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # opencode
-export PATH=/home/kabaww/.opencode/bin:$PATH
+export PATH="$HOME/.opencode/bin:$PATH"
 
 # kitty ssh fix
 [[ "$TERM" == "xterm-kitty" ]] && alias ssh="TERM=xterm-256color ssh"
 
-# vi-mode
-source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+# vi-mode (path differs per platform — loaded in platform files)
 
-export YDOTOOL_SOCKET="$HOME/.ydotool_socket"
+
 
 # pnpm
-export PNPM_HOME="/home/kabaww/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -171,23 +176,10 @@ export PATH="$HOME/.local/bin:$PATH"
 # eval "$(swiftenv init -)"
 
 
-export SWIFTLY_BIN_DIR="/home/kabaww/.local/share/swiftly/bin"
-export SWIFTLY_TOOLCHAINS_DIR="/home/kabaww/.local/share/swiftly/toolchains"
+export SWIFTLY_BIN_DIR="$HOME/.local/share/swiftly/bin"
+export SWIFTLY_TOOLCHAINS_DIR="$HOME/.local/share/swiftly/toolchains"
 if [[ ":$PATH:" != *":$SWIFTLY_BIN_DIR:"* ]]; then
     export PATH="$SWIFTLY_BIN_DIR:$PATH"
 fi
 
 export XDG_DATA_DIRS="/usr/local/share:${XDG_DATA_DIRS}"
-
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/platform_tools
-export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
-
-export JAVA_HOME=/opt/android-studio/jbr
-export PATH=$PATH:$JAVA_HOME/bin
-
-export CAPACITOR_ANDROID_STUDIO_PATH=/usr/bin/android-studio
-
-
-alias proton-run='STEAM_COMPAT_CLIENT_INSTALL_PATH=~/.steam/root ~/.steam/root/compatibilitytools.d/GE-Proton10-17/proton run'
-alias fitgirl-installer='STEAM_COMPAT_DATA_PATH=/mnt/windows/steamlibrary/WineGames/pfx STEAM_COMPAT_CLIENT_INSTALL_PATH=~/.steam/root ~/.steam/root/compatibilitytools.d/GE-Proton10-17/proton run'

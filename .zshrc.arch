@@ -1,1 +1,21 @@
 alias yeet="yay -Rcds"
+
+# vi-mode (Arch path)
+[[ -f /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh ]] && \
+  source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+export YDOTOOL_SOCKET="$HOME/.ydotool_socket"
+
+# Android SDK
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH="$PATH:$ANDROID_HOME/platform_tools"
+export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
+
+export JAVA_HOME=/opt/android-studio/jbr
+export PATH="$PATH:$JAVA_HOME/bin"
+
+export CAPACITOR_ANDROID_STUDIO_PATH=/usr/bin/android-studio
+
+# Proton / gaming
+alias proton-run='STEAM_COMPAT_CLIENT_INSTALL_PATH=~/.steam/root ~/.steam/root/compatibilitytools.d/GE-Proton10-17/proton run'
+alias fitgirl-installer='STEAM_COMPAT_DATA_PATH=/mnt/windows/steamlibrary/WineGames/pfx STEAM_COMPAT_CLIENT_INSTALL_PATH=~/.steam/root ~/.steam/root/compatibilitytools.d/GE-Proton10-17/proton run'
