@@ -13,7 +13,7 @@ tmux rename-window "$(basename $PATH_CURRENT)"
 tmux send-keys "nvim" Enter
 
 # Split right for dev server + claude code
-tmux split-window -h -c "$PATH_CURRENT" -p 35
+tmux split-window -h -c "$PATH_CURRENT" -p 20
 
 # Split the right pane vertically
 tmux split-window -v -c "$PATH_CURRENT"
