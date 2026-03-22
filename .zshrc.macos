@@ -14,3 +14,5 @@ if [[ -d "/Applications/Android Studio.app" ]]; then
   export PATH="$PATH:$JAVA_HOME/bin"
   export CAPACITOR_ANDROID_STUDIO_PATH="/Applications/Android Studio.app"
 fi
+
+alias grind="tmux new-session -A -s krokis_media_dev"
