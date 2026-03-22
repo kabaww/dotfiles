@@ -125,7 +125,7 @@ fi
 
 alias vim="nvim"
 alias dotconf="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-alias lzdot='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias lazyconf='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -187,3 +187,7 @@ export JAVA_HOME=/opt/android-studio/jbr
 export PATH=$PATH:$JAVA_HOME/bin
 
 export CAPACITOR_ANDROID_STUDIO_PATH=/usr/bin/android-studio
+
+
+alias proton-run='STEAM_COMPAT_CLIENT_INSTALL_PATH=~/.steam/root ~/.steam/root/compatibilitytools.d/GE-Proton10-17/proton run'
+alias fitgirl-installer='STEAM_COMPAT_DATA_PATH=/mnt/windows/steamlibrary/WineGames/pfx STEAM_COMPAT_CLIENT_INSTALL_PATH=~/.steam/root ~/.steam/root/compatibilitytools.d/GE-Proton10-17/proton run'
